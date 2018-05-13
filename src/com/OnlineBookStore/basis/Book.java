@@ -3,6 +3,7 @@ package com.OnlineBookStore.basis;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * 图书类
  */
@@ -25,7 +26,6 @@ public class Book {
 
     //剩余数量
     private int quantity;
-
 
     //图书物品列表
     private List<BookItem> bookItemList;

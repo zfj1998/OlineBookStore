@@ -14,6 +14,5 @@ public interface UserOperations {
      * @param inputPassword 用户输入的密码
      * @return 如果登录成功，返回一个Account，如果失败，返回null
      */
-    Account Login(String accountName,String inputPassword);
-
+    Account Login(String inputPassword,String accountName);
 }
