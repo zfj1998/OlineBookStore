@@ -9,14 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import test.Test;
 
-@WebServlet("/index2")
-public class HelloWorld extends HttpServlet{
+@WebServlet("/try")
+public class Try extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request,HttpServletResponse response)
             throws IOException, ServletException {
-        PrintWriter writer = response.getWriter();
-        Test test = new Test();
-        String description = test.getDescription();
+        String description = "trytrytry";
         request.setAttribute("description",description);
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index/index3.jsp");
         view.forward(request,response);
