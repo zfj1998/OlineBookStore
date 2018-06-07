@@ -28,4 +28,75 @@ public class Bill {
     private Refund refund;
     //充值
     private Recharge recharge;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public Recharge getRecharge() {
+        return recharge;
+    }
+
+    public Refund getRefund() {
+        return refund;
+    }
+
+    public String getBillId() {
+        return billId;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public String getRechargeId() {
+        return rechargeId;
+    }
+
+    public String getRefundId() {
+        return refundId;
+    }
+
+    public String getWalletId() {
+        return walletId;
+    }
+
+    public void setBillId(String billId) {
+        this.billId = billId;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setRecharge(Recharge recharge) {
+        this.recharge = recharge;
+    }
+
+    public void setRechargeId(String rechargeId) {
+        this.rechargeId = rechargeId;
+    }
+
+    public void setRefund(Refund refund) {
+        this.refund = refund;
+    }
+
+    public void setRefundId(String refundId) {
+        this.refundId = refundId;
+    }
+
+    public void setWalletId(String walletId) {
+        this.walletId = walletId;
+    }
+
+    //构造方法
+    public Bill(){}
+    public Bill(String billId){
+        this.billId=billId;
+        //TODO:从数据库获取信息
+    }
 }

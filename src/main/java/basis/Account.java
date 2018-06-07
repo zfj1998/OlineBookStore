@@ -2,6 +2,8 @@ package basis;
 
 import enums.AccountStatus;
 import enums.UserType;
+import operations.BaseOperations;
+import operations.Operations;
 
 import java.util.List;
 
@@ -78,5 +80,43 @@ public class Account{
 
     public String getUserName() {
         return userName;
+    }
+
+    public UserType getPermission() {
+        return permission;
+    }
+
+    public void setPermission(UserType permission) {
+        this.permission = permission;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
+    }
+
+    public AccountStatus getStatus() {
+        return status;
+    }
+
+    //添加一个地址
+    public void addAddress(Address address){addressList.add(address);}
+    //删除一个地址
+    public void removeAddress(int index){addressList.remove(index);}
+    //添加一个订单
+    public void createOrder(Order order){orderList.add(order);}
+
+    //构造方法
+    public Account(){}
+    public Account(String userId){
+        BaseOperations baseOperations=new Operations();
+        this.userId=userId;
+        this.addressList=baseOperations.getAddressListByUserId(userId);
+        this.orderList=baseOperations.getOrderListByUserId(userId);
+        this.serviceList=baseOperations.getServiceListByUserId(userId);
+        this.rechargeList=baseOperations.getRechargeListByUserId(userId);
+        this.wallet=baseOperations.getWalletByUserId(userId);
+        this.shopCart=baseOperations.getShopCartByUserId(userId);
+        //TODO:从数据库获取账户其他信息
+
     }
 }

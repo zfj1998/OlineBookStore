@@ -4,7 +4,6 @@ import basis.Account;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import java.util.List;
 import java.util.UUID;
 
 public class UserOperation {

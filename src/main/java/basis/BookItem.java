@@ -24,4 +24,51 @@ public class BookItem {
 
     //折扣
     private BigDecimal discount;
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public ItemStatus getStatus() {
+        return status;
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setStatus(ItemStatus status) {
+        this.status = status;
+    }
+
+    //构造方法
+    public BookItem(){}
+    public BookItem(String itemId){
+        this.itemId=itemId;
+        //TODO:从数据库获取信息
+    }
 }

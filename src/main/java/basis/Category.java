@@ -1,7 +1,5 @@
 package basis;
 
-import java.util.List;
-
 /**
  * 图书类别类
  */
@@ -43,4 +41,11 @@ public class Category {
     }
     //该类别下所有书
     //private List<Book> bookList;
+
+    //构造方法
+    public Category(){}
+    public Category(int categoryId){
+        this.categoryId=categoryId;
+        //TODO:从数据库获取信息
+    }
 }
