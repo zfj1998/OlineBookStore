@@ -11,7 +11,7 @@ import basis.*;
 public class Operations {
 
     public static BaseOperations baseOperations;
-    public static UserOperations userOperations;
+    public static AccountDAO userOperations;
 
     //接口的实现
     public static void RegistOperations(){
@@ -86,21 +86,7 @@ public class Operations {
                 return null;
             }
         };
-        userOperations=new UserOperations() {
-            @Override
-            public Account Login(String accountName, String inputPassword) {
-                //通过用户名获取一个Account
-                Account currentAccount=baseOperations.getAccountByName(accountName);
-                if(!currentAccount.getPassword().equals(inputPassword)){
-                    //密码错误
-                }
-                else{
-                    //登录成功
-                    return currentAccount;
-                }
-                return null;
-            }
-        };
+
     }
 
 }
