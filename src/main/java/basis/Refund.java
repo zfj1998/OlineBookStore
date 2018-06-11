@@ -8,7 +8,7 @@ import java.util.Date;
  * 退款信息类
  */
 
-public class Refund {
+public class Refund extends Bill{
 
     //退款编号，PK
     private String refundId;
@@ -78,8 +78,10 @@ public class Refund {
 
     //构造方法
     public Refund(){}
-    public Refund(String refundId){
-        this.refundId=refundId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Refund init() {
+        this.setType("Refund");
+        return this;
     }
 }

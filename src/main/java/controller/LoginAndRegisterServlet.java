@@ -1,7 +1,7 @@
 package controller;
 
 import basis.Account;
-import operations.UserOperation;
+import operations.interfaces.UserOperation;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.RequestDispatcher;

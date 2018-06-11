@@ -22,4 +22,5 @@
     <insert id="register">
         insert into user value (#{userId},#{userName},'0',#{phone},#{password});
     </insert>
+
 </mapper>

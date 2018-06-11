@@ -2,8 +2,8 @@ package basis;
 
 import enums.AccountStatus;
 import enums.UserType;
-import operations.BaseOperations;
 import operations.Operations;
+import util.Bean;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 
 
-public class Account{
+public class Account extends Bean{
 
     //用户ID，PK
     private String userId;
@@ -45,6 +45,31 @@ public class Account{
     private List<Service> serviceList;
     //充值列表
     private List<Recharge> rechargeList;
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
+    public ShopCart getShopCart() {
+        return shopCart;
+    }
+
+    public void setShopCart(ShopCart shopCart) {
+        this.shopCart = shopCart;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     //钱包
     private Wallet wallet;
     //购物车
@@ -107,16 +132,16 @@ public class Account{
 
     //构造方法
     public Account(){}
-    public Account(String userId){
-        BaseOperations baseOperations=new Operations();
-        this.userId=userId;
-        this.addressList=baseOperations.getAddressListByUserId(userId);
-        this.orderList=baseOperations.getOrderListByUserId(userId);
-        this.serviceList=baseOperations.getServiceListByUserId(userId);
-        this.rechargeList=baseOperations.getRechargeListByUserId(userId);
-        this.wallet=baseOperations.getWalletByUserId(userId);
-        this.shopCart=baseOperations.getShopCartByUserId(userId);
-        //TODO:从数据库获取账户其他信息
 
+    //构造之后要初始化，将其他信息也找到
+    public Account init(){
+        this.setType("Account");
+        this.orderList= Operations.BaseOperations.getOrderListByUserId(userId);
+        this.addressList=Operations.BaseOperations.getAddressListByUserId(userId);
+        this.serviceList=Operations.BaseOperations.getServiceListByUserId(userId);
+        this.rechargeList=Operations.BaseOperations.getRechargeListByUserId(userId);
+        this.wallet=Operations.BaseOperations.getWalletByUserId(userId);
+        this.shopCart=Operations.BaseOperations.getShopCartByUserId(userId);
+        return this;
     }
 }

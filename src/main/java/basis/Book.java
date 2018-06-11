@@ -1,6 +1,8 @@
 package basis;
 
 import enums.ItemStatus;
+import operations.Operations;
+import util.Bean;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * 图书类
  */
-public class Book {
+public class Book extends Bean{
 
     //图书编号,PK
     private String bookId;
@@ -76,6 +78,16 @@ public class Book {
         this.name = name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    private Category category;
+
     //设置在架上图书数量
     public void setQuantity() {
         int quantity=0;
@@ -91,10 +103,23 @@ public class Book {
         bookItemList.add(bookItem);
     }
 
+    //抽一本书
+    public BookItem takeBookItem() {
+        BookItem item=bookItemList.get((int)(Math.random()*bookItemList.size()));
+        while(!item.getStatus().equals(ItemStatus.Onshelf)){
+            item=bookItemList.get((int)(Math.random()*bookItemList.size()));
+        }
+        return item;
+    }
+
     //构造方法
     public Book(){}
-    public Book(String bookId){
-        this.bookId=bookId;
-        //TODO:从数据库获取信息
+
+    public Book init(){
+        this.setType("Book");
+        this.category=Operations.CategoryOperations.getCategoryById(categoryId);
+        this.bookItemList= Operations.BaseOperations.getBookItemListByBookId(bookId);
+        setQuantity();
+        return this;
     }
 }

@@ -1,11 +1,13 @@
 package basis;
 
+import util.Bean;
+
 /**
  * 收货地址类
  */
 
 
-public class Address{
+public class Address extends Bean{
 
     //地址编号，PK
     private String addressId;
@@ -64,8 +66,10 @@ public class Address{
 
     //构造方法
     public Address(){}
-    public Address(String addressId){
-        this.addressId=addressId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Address init() {
+        this.setType("Address");
+        return this;
     }
 }

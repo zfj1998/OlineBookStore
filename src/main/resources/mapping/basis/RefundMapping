@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="operations.basis.RefundOperations">
+
+    <resultMap id="RefundMap" type="basis.Refund">
+        <!--TODO:在这里修改数据库定义-->
+        <result property="refundId" column="id"/>
+        <result property="orderId" column="status"/>
+        <result property="itemId" column="permission"/>
+        <result property="applyDate" column="userName"/>
+        <result property="status" column="userName"/>
+    </resultMap>
+
+    <select id="getRefundById" resultMap="RefundMap">
+        SELECT * FROM Refund
+        <where>
+            refundId = '${refundId}'
+        </where>
+    </select>
+</mapper>

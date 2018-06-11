@@ -1,6 +1,7 @@
 package basis;
 
 import enums.ItemStatus;
+import util.Bean;
 
 import java.math.BigDecimal;
 
@@ -8,7 +9,7 @@ import java.math.BigDecimal;
  * 物品类
  */
 
-public class BookItem {
+public class BookItem extends Bean{
 
     //物品编号
     private String itemId;
@@ -67,8 +68,10 @@ public class BookItem {
 
     //构造方法
     public BookItem(){}
-    public BookItem(String itemId){
-        this.itemId=itemId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public BookItem init() {
+        this.setType("BookItem");
+        return this;
     }
 }

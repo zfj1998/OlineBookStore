@@ -1,5 +1,7 @@
 package basis;
 
+import util.Bean;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 
 
-public class Wallet {
+public class Wallet extends Bean{
 
     //钱包编号，PK
     private String walletId;
@@ -72,8 +74,10 @@ public class Wallet {
 
     //构造方法
     public Wallet(){}
-    public Wallet(String walletId){
-        this.walletId=walletId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Wallet init() {
+        this.setType("Wallet");
+        return this;
     }
 }

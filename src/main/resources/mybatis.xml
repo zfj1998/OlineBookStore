@@ -18,5 +18,18 @@
 
     <mappers>
         <mapper resource="mapping/CategoryMapping.xml"/>
+        <mapper resource="mapping/basis/AccountMapping.xml"/>
+        <mapper resource="mapping/basis/AddressMapping.xml"/>
+        <mapper resource="mapping/basis/BillMapping.xml"/>
+        <mapper resource="mapping/basis/BookMapping.xml"/>
+        <mapper resource="mapping/basis/BookItemMapping.xml"/>
+        <mapper resource="mapping/basis/CategoryMapping.xml"/>
+        <mapper resource="mapping/basis/ExchangeMapping.xml"/>
+        <mapper resource="mapping/basis/OrderMapping.xml"/>
+        <mapper resource="mapping/basis/RechargeMapping.xml"/>
+        <mapper resource="mapping/basis/RefundMapping.xml"/>
+        <mapper resource="mapping/basis/ServiceMapping.xml"/>
+        <mapper resource="mapping/basis/ShopCartMapping.xml"/>
+        <mapper resource="mapping/basis/WalletMapping.xml"/>
     </mappers>
 </configuration>

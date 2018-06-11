@@ -1,11 +1,13 @@
 package basis;
 
+import util.Bean;
+
 /**
  * 图书类别类
  */
 
 
-public class Category {
+public class Category extends Bean{
 
     //类别号
     private int categoryId;
@@ -44,8 +46,10 @@ public class Category {
 
     //构造方法
     public Category(){}
-    public Category(int categoryId){
-        this.categoryId=categoryId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Category init() {
+        this.setType("Category");
+        return this;
     }
 }

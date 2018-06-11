@@ -8,7 +8,7 @@ import java.util.Date;
  * 换货信息类
  */
 
-public class Exchange {
+public class Exchange extends Service{
 
     //换货编号，PK
     private String exchangeId;
@@ -100,8 +100,10 @@ public class Exchange {
 
     //构造方法
     public Exchange(){}
-    public Exchange(String exchangeId){
-        this.exchangeId=exchangeId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Exchange init() {
+        this.setType("Exchange");
+        return this;
     }
 }

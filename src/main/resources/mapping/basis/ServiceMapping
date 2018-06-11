@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="operations.basis.ServiceOperations">
+
+    <resultMap id="ServiceMap" type="basis.Service">
+        <!--TODO:在这里修改数据库定义-->
+        <result property="serviceId" column="id"/>
+        <result property="userId" column="status"/>
+    </resultMap>
+
+    <select id="getServiceById" resultMap="ServiceMap">
+        SELECT * FROM Service
+        <where>
+            serviceId = '${serviceId}'
+        </where>
+    </select>
+</mapper>

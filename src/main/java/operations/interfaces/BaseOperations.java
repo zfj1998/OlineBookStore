@@ -1,6 +1,7 @@
-package operations;
+package operations.interfaces;
 
 import basis.*;
+import operations.Operations;
 
 import java.util.List;
 
@@ -11,6 +12,14 @@ import java.util.List;
 
 
 public interface BaseOperations {
+
+    /**
+     * 注册接口
+     * @param baseOperations 实现了该接口的类
+     */
+    static void Regist(BaseOperations baseOperations){
+        Operations.BaseOperations=baseOperations;
+    }
 
     //通过userId获取一些基本对象
     Account getAccountByUserId(String userId);

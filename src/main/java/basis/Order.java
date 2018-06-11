@@ -11,13 +11,13 @@ import java.util.List;
  */
 
 
-public class Order {
+public class Order extends Bill{
 
     //订单编号
     private String orderId;
 
     //用户编号
-    private String userId;
+//    private String userId;
 
     //下单日期
     private Date orderDate;
@@ -76,9 +76,9 @@ public class Order {
         return addressId;
     }
 
-    public String getUserId() {
-        return userId;
-    }
+//    public String getUserId() {
+//        return userId;
+//    }
 
     public void setAddress(Address address) {
         this.address = address;
@@ -108,9 +108,9 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
 
     //添加书籍项
     public void addBookItemList(BookItem bookItem){
@@ -119,8 +119,10 @@ public class Order {
 
     //构造方法
     public Order(){}
-    public Order(String orderId){
-        this.orderId=orderId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Order init() {
+        this.setType("Order");
+        return this;
     }
 }

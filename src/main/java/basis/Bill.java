@@ -1,10 +1,12 @@
 package basis;
 
+import util.Bean;
+
 /**
  * 钱包明细类
  */
 
-public class Bill {
+public class Bill extends Bean{
 
     //账单号，PK
     private String billId;
@@ -20,26 +22,6 @@ public class Bill {
 
     //充值编号，FK
     private String rechargeId;
-
-
-    //订单
-    private Order order;
-    //退款
-    private Refund refund;
-    //充值
-    private Recharge recharge;
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public Recharge getRecharge() {
-        return recharge;
-    }
-
-    public Refund getRefund() {
-        return refund;
-    }
 
     public String getBillId() {
         return billId;
@@ -65,24 +47,12 @@ public class Bill {
         this.billId = billId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
-    public void setRecharge(Recharge recharge) {
-        this.recharge = recharge;
-    }
-
     public void setRechargeId(String rechargeId) {
         this.rechargeId = rechargeId;
-    }
-
-    public void setRefund(Refund refund) {
-        this.refund = refund;
     }
 
     public void setRefundId(String refundId) {
@@ -95,8 +65,10 @@ public class Bill {
 
     //构造方法
     public Bill(){}
-    public Bill(String billId){
-        this.billId=billId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public Bill init() {
+        this.setType("Bill");
+        return this;
     }
 }

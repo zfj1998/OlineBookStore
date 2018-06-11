@@ -1,5 +1,7 @@
 package basis;
 
+import util.Bean;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 
 
-public class ShopCart {
+public class ShopCart extends Bean{
 
     //购物车编号
     private String cartId;
@@ -77,8 +79,10 @@ public class ShopCart {
 
     //构造方法
     public ShopCart(){}
-    public ShopCart(String cartId){
-        this.cartId=cartId;
-        //TODO:从数据库获取信息
+
+    @Override
+    public ShopCart init() {
+        this.setType("ShopCart");
+        return this;
     }
 }
