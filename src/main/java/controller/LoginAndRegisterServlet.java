@@ -1,7 +1,7 @@
 package controller;
 
 import basis.Account;
-import operations.interfaces.UserOperation;
+import operations.Operations;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.RequestDispatcher;
@@ -25,11 +25,11 @@ public class LoginAndRegisterServlet extends HttpServlet {
         HttpSession session;
         if(status.equals("0"))
         {
-            result =  UserOperation.login(sqlSessionFactory,name,password);
+            result = Operations.GeneralOperation.login(name,password);
         }else if (status.equals("1"))
         {
             phone = req.getParameter("logphone");
-            result =  UserOperation.register(sqlSessionFactory,password,name,phone);
+            result =  Operations.UserOperation.register(password,name,phone);
         }
         if (result!=null)
         {

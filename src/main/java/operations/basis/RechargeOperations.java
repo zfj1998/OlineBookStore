@@ -8,6 +8,11 @@ import java.util.Date;
 
 public interface RechargeOperations {
 
+    /**
+     * 从数据库通过唯一Id获取对象（此时未初始化对象）
+     * @param rechargeId
+     * @return
+     */
     Recharge getRechargeById(@Param("rechargeId") String rechargeId);
 
     /**

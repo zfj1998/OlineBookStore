@@ -8,6 +8,11 @@ import java.util.Date;
 
 public interface OrderOperations {
 
+    /**
+     * 从数据库通过唯一Id获取对象（此时未初始化对象）
+     * @param orderId
+     * @return
+     */
     Order getOrderById(@Param("orderId") String orderId);
 
     /**

@@ -1,6 +1,9 @@
 package basis;
 
+import operations.Operations;
 import util.Bean;
+
+import java.util.List;
 
 /**
  * 图书类别类
@@ -10,7 +13,7 @@ import util.Bean;
 public class Category extends Bean{
 
     //类别号
-    private int categoryId;
+    private String categoryId;
 
     //类名
     private String name;
@@ -18,11 +21,11 @@ public class Category extends Bean{
     //描述
     private String description;
 
-    public int getCategoryId(){
+    public String getCategoryId(){
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId){
+    public void setCategoryId(String categoryId){
         this.categoryId = categoryId;
     }
 
@@ -41,8 +44,13 @@ public class Category extends Bean{
     public void setDescription(String description){
         this.description = description;
     }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
     //该类别下所有书
-    //private List<Book> bookList;
+    private List<Book> bookList;
 
     //构造方法
     public Category(){}
@@ -50,6 +58,7 @@ public class Category extends Bean{
     @Override
     public Category init() {
         this.setType("Category");
+        this.bookList= Operations.BaseOperations.getBookListByCategoryId(categoryId);
         return this;
     }
 }

@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 /**
  * 在网页加载（未登录）时初始化的Servlet
+ * @see operations.implementation.InterfaceRegister
  */
 public class InitServlet extends HttpServlet{
 

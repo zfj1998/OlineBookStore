@@ -5,6 +5,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ShopCartOperations {
 
+    /**
+     * 从数据库通过唯一Id获取对象（此时未初始化对象）
+     * @param shopCartId
+     * @return
+     */
     ShopCart getShopCartById(@Param("shopCartId") String shopCartId);
 
     /**
@@ -40,4 +45,11 @@ public interface ShopCartOperations {
      * @return
      */
     int clearShopCart(@Param("shopCartId") String shopCartId);
+
+    /**
+     * 从用户Id获取购物车
+     * @param userId
+     * @return
+     */
+    ShopCart getShopCartByUserId(@Param("userId") String userId);
 }

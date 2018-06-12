@@ -123,6 +123,12 @@ public class Order extends Bill{
     @Override
     public Order init() {
         this.setType("Order");
+        this.totalItem=this.bookItemList.size();
+        BigDecimal tp=new BigDecimal(0.0);
+        for (BookItem item:bookItemList) {
+            tp.add(item.getPrice().multiply(item.getDiscount()));
+        }
+        totalPrice=tp;
         return this;
     }
 }

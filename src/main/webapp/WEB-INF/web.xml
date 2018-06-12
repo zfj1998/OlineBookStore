@@ -21,4 +21,13 @@
         <url-pattern>/loginAndRegister</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>initial</servlet-name>
+        <servlet-class>controller.InitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>initial</servlet-name>
+        <url-pattern>/init</url-pattern>
+    </servlet-mapping>
 </web-app>

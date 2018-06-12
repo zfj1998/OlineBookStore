@@ -7,6 +7,11 @@ import java.math.BigDecimal;
 
 public interface WalletOperations {
 
+    /**
+     * 从数据库通过唯一Id获取对象（此时未初始化对象）
+     * @param walletId
+     * @return
+     */
     Wallet getWalletById(@Param("walletId") String walletId);
 
     /**
@@ -39,4 +44,11 @@ public interface WalletOperations {
      */
     int modifyPassword(@Param("walletId") String walletId,
                        @Param("password") String password);
+
+    /**
+     * 通过用户ID获取钱包
+     * @param userId
+     * @return 钱包
+     */
+    Wallet getWalletByUserId(@Param("userId") String userId);
 }

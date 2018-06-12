@@ -26,6 +26,16 @@ public interface UserOperation {
     Account register(String password, String name, String phone);
 
     /**
+     * 修改密码
+     * @param userId 要修改密码的账户
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     * @param newPasswordConfirmed 确认新密码
+     * @return 修改密码的账户
+     */
+    Account modifyPassword(String userId,String oldPassword,String newPassword,String newPasswordConfirmed);
+
+    /**
      * 修改个人信息
      * @param userId 账户id
      * @param request 发送修改个人信息的请求
@@ -81,4 +91,6 @@ public interface UserOperation {
      * @return
      */
     Bill receiptOrder(String userId,String orderId);
+
+
 }

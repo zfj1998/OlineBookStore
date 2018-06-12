@@ -11,14 +11,16 @@ import operations.interfaces.UserOperation;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.UUID;
 
+/**
+ * @see operations.interfaces.UserOperation
+ */
 public class UserOperationImpl implements UserOperation {
 
     public Account register(String password, String name, String phone)
     {
         try {
-            String temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+            String temp = Operations.BaseOperations.getRandomUUID();
             Operations.AccountOperations.register(temp , AccountStatus.Normal, UserType.Customer,name,password,phone);
             InitServlet.getSession().commit();
             Account account = Operations.AccountOperations.login(temp,password).init();
@@ -27,6 +29,21 @@ public class UserOperationImpl implements UserOperation {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+
+    @Override
+    public Account modifyPassword(String userId,String oldPassword, String newPassword, String newPasswordConfirmed) {
+        Account account=Operations.AccountOperations.getAccountById(userId).init();
+        if(account.getPassword().equals(oldPassword)){
+            if(newPassword.equals(newPasswordConfirmed)){
+                Operations.AccountOperations.updatePassword(userId,newPassword);
+                account=Operations.AccountOperations.getAccountById(userId).init();
+                return account;
+            }
+        }
+        //修改失败
         return null;
     }
 
@@ -40,6 +57,7 @@ public class UserOperationImpl implements UserOperation {
             account=Operations.AccountOperations.getAccountById(userId);
             return account;
         }
+        //修改失败
         return null;
     }
 
@@ -49,9 +67,9 @@ public class UserOperationImpl implements UserOperation {
         Recharge recharge=new Recharge();
         recharge.setDate(new Date());
         recharge.setPrice(price);
-        String temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        String temp = Operations.BaseOperations.getRandomUUID();
         recharge.setRechargeId(temp);
-        temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        temp = Operations.BaseOperations.getRandomUUID();
         recharge.setBillId(temp);
         recharge.setWalletId(account.getWallet().getWalletId());
         recharge.init();
@@ -84,13 +102,12 @@ public class UserOperationImpl implements UserOperation {
         Account account=Operations.AccountOperations.getAccountById(userId).init();
         Address address=new Address();
         address.setUserId(userId);
-        String temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        String temp = Operations.BaseOperations.getRandomUUID();
         address.setAddressId(temp);
         address.setEmail(request.getParameter("email"));
         address.setRealName(request.getParameter("realName"));
         address.setTel(request.getParameter("tel"));
         address.init();
-        account.addAddress(address);
         Operations.AddressOperations.insertAddress(address.getAddressId(),address.getUserId(),
                 address.getRealName(),address.getTel(),address.getEmail());
         return address;
@@ -101,9 +118,9 @@ public class UserOperationImpl implements UserOperation {
         Account account=Operations.AccountOperations.getAccountById(userId);
         Order order=new Order();
         order.setAddressId(addressId);
-        String temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        String temp = temp = Operations.BaseOperations.getRandomUUID();
         order.setOrderId(temp);
-        temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        temp = Operations.BaseOperations.getRandomUUID();
         order.setBillId(temp);
         order.setOrderDate(new Date());
         order.setTotalItem(account.getShopCart().getTotalItem());
@@ -154,6 +171,5 @@ public class UserOperationImpl implements UserOperation {
         //商品没有开始运输，无法确认收货
         return null;
     }
-
 
 }

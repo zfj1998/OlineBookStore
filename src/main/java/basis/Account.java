@@ -13,7 +13,7 @@ import java.util.List;
 
 
 
-public class Account extends Bean{
+public class Account extends Bean {
 
     //用户ID，PK
     private String userId;
@@ -123,13 +123,6 @@ public class Account extends Bean{
         return status;
     }
 
-    //添加一个地址
-    public void addAddress(Address address){addressList.add(address);}
-    //删除一个地址
-    public void removeAddress(int index){addressList.remove(index);}
-    //添加一个订单
-    public void createOrder(Order order){orderList.add(order);}
-
     //构造方法
     public Account(){}
 
@@ -144,4 +137,5 @@ public class Account extends Bean{
         this.shopCart=Operations.BaseOperations.getShopCartByUserId(userId);
         return this;
     }
+
 }

@@ -1,12 +1,24 @@
 package util;
 
+/**
+ * @see basis
+ */
 public abstract class Bean {
+
     private String type;
 
+    /**
+     * 拿到这个对象的类型名
+     * @return 以字符串形式返回类型名
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * 设置这个Bean对象的类型名
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }

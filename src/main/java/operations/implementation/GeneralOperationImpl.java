@@ -7,6 +7,9 @@ import operations.Operations;
 
 import java.util.List;
 
+/**
+ * @see operations.interfaces.GeneralOperation
+ */
 public class GeneralOperationImpl implements GeneralOperation{
     @Override
     public Account login(String userId, String password)
@@ -25,7 +28,6 @@ public class GeneralOperationImpl implements GeneralOperation{
 
     @Override
     public List<Book> search(String keyword) {
-        //TODO:完成关键字检索
         return null;
     }
 }

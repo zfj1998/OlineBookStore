@@ -4,6 +4,7 @@ import basis.*;
 import operations.Operations;
 
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -35,13 +36,21 @@ public interface AdministratorOperation {
      * @param bookId 图书号
      * @return 进货所得到的BookItem对象
      */
-    BookItem addGoods(String bookId);
+    BookItem addGoods(String bookId, BigDecimal price);
     /**
      * 进一批货
      * @param bookItems 进货的图书对象
      * @return 返回进货的图书数量
      */
     int inputBookItems(List<BookItem> bookItems);
+
+    /**
+     * 打折
+     * @param bookItemId 要打折的书籍对象编号
+     * @param discount 折扣率
+     * @return
+     */
+    BookItem discountBook(String bookItemId,BigDecimal discount);
 
     /**
      * 已发货

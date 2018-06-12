@@ -4,11 +4,18 @@ import basis.*;
 import operations.interfaces.BaseOperations;
 
 import java.util.List;
+import java.util.UUID;
 
+/**
+ * @see operations.interfaces.BaseOperations
+ * TODO：完成数据库操作，要返回一个List
+ */
 public class BaseOperationsImpl implements BaseOperations{
+
     @Override
-    public Account getAccountByUserId(String userId) {
-        return null;
+    public String getRandomUUID() {
+        String temp = UUID.randomUUID().toString().replace("-", "").replaceAll("[a-zA-Z]","").substring(0,10);
+        return temp;
     }
 
     @Override
@@ -42,7 +49,27 @@ public class BaseOperationsImpl implements BaseOperations{
     }
 
     @Override
+    public Order getOrderByBillId(String billId) {
+        return null;
+    }
+
+    @Override
+    public Refund getRefundByBillId(String billId) {
+        return null;
+    }
+
+    @Override
+    public Recharge getRechargeByBillId(String billId) {
+        return null;
+    }
+
+    @Override
     public List<BookItem> getBookItemListByBookId(String bookId) {
+        return null;
+    }
+
+    @Override
+    public List<Book> getBookListByCategoryId(String categoryId) {
         return null;
     }
 
