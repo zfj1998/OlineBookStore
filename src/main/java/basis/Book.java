@@ -1,9 +1,5 @@
 package basis;
 
-import enums.ItemStatus;
-import operations.Operations;
-import util.Bean;
-
 import java.util.Date;
 import java.util.List;
 
@@ -11,19 +7,29 @@ import java.util.List;
 /**
  * 图书类
  */
-public class Book extends Bean{
+public class Book {
 
     //图书编号,PK
     private String bookId;
 
+
     //类编号
     private String categoryId;
+
+    //类编号
+    private double price;
 
     //书名
     private String name;
 
+    //书名
+    private String writer;
+
     //描述
     private String description;
+
+    //图片url,图片的url暂定以图书编号为名字，放在一个文件夹中。
+    private String url;
 
     //上架日期
     private Date date;
@@ -38,8 +44,16 @@ public class Book extends Bean{
         return date;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     public int getQuantity() {
         return quantity;
+    }
+
+    public List<BookItem> getBookItemList() {
+        return bookItemList;
     }
 
     public String getBookId() {
@@ -56,6 +70,19 @@ public class Book extends Bean{
 
     public String getName() {
         return name;
+
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setBookItemList(List<BookItem> bookItemList) {
+        this.bookItemList = bookItemList;
     }
 
     public void setBookId(String bookId) {
@@ -78,48 +105,21 @@ public class Book extends Bean{
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    private Category category;
-
-    //设置在架上图书数量
-    public void setQuantity() {
-        int quantity=0;
-        for (BookItem bookItem:bookItemList
-             ) {
-            if(bookItem.getStatus()== ItemStatus.Onshelf)quantity++;
-        }
-        this.quantity=quantity;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    //添加图书
-    public void addBookItem(BookItem bookItem) {
-        bookItemList.add(bookItem);
-    }
-
-    //抽一本书
-    public BookItem takeBookItem() {
-        BookItem item=bookItemList.get((int)(Math.random()*bookItemList.size()));
-        while(!item.getStatus().equals(ItemStatus.Onshelf)){
-            item=bookItemList.get((int)(Math.random()*bookItemList.size()));
-        }
-        return item;
-    }
-
-    //构造方法
-    public Book(){}
-
-    public Book init(){
-        this.setType("Book");
-        this.category=Operations.CategoryOperations.getCategoryById(categoryId);
-        this.bookItemList= Operations.BaseOperations.getBookItemListByBookId(bookId);
-        setQuantity();
-        return this;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 }
+
+

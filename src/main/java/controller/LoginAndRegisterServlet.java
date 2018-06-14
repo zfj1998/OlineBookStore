@@ -1,46 +1,66 @@
 package controller;
 
 import basis.Account;
-import operations.Operations;
+import basis.ShopCart;
+import operations.ShopCartOperation;
+import operations.UserOperation;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.List;
 
 public class LoginAndRegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String status = req.getParameter("status");
+        String status = req.getParameter("status");//请求状态
         String name = req.getParameter("logname");
         String password = req.getParameter("logpass");
+        HttpSession session = req.getSession();
         String phone;
         SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) getServletContext().getAttribute("SqlSessionFactory");
         Account result = null;
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
-        HttpSession session;
-        if(status.equals("0"))
-        {
-            result = Operations.GeneralOperation.login(name,password);
-        }else if (status.equals("1"))
-        {
-            phone = req.getParameter("logphone");
-            result =  Operations.UserOperation.register(password,name,phone);
+        switch (status) {
+            case "0":
+//login
+                phone = req.getParameter("logphone");
+                result = UserOperation.login(sqlSessionFactory, name, password, phone);
+                break;
+            case "1":
+//register
+                phone = req.getParameter("logphone");
+                result = UserOperation.register(sqlSessionFactory, password, name, phone);
+                break;
+            case "2":
+//logout
+                session.invalidate();
+                session = req.getSession();
+                session.setAttribute("loginStatus", "false");
+                requestDispatcher = req.getRequestDispatcher("index.jsp");
+                requestDispatcher.forward(req, resp);
+                break;
         }
         if (result!=null)
         {
             session = req.getSession();
             session.setAttribute("user", result);
-            requestDispatcher = req.getRequestDispatcher("index1.jsp");
-        }else
+            session.setAttribute("loginStatus","true");
+            List<ShopCart>shopCarts = (List<ShopCart>)session.getAttribute("cartList");
+            if(shopCarts.size()>0)
+            {
+                ShopCartOperation.addLoginUserInfo(sqlSessionFactory,shopCarts,result.getUserId());
+            }
+            requestDispatcher = req.getRequestDispatcher("index.jsp");
+        }
+        else
         {
             session = req.getSession();
             session.setAttribute("user", name);
-            requestDispatcher = req.getRequestDispatcher("register.html");
+            session.setAttribute("loginStatus","false");
+            requestDispatcher = req.getRequestDispatcher("login.html");
         }
         requestDispatcher.forward(req,resp);
     }

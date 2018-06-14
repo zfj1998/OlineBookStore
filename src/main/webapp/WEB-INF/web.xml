@@ -5,10 +5,12 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-
-
     <listener>
         <listener-class>controller.SQLConnectListner</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>controller.SessionListener</listener-class>
     </listener>
 
     <servlet>
@@ -22,12 +24,22 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>initial</servlet-name>
-        <servlet-class>controller.InitServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>ShopCart</servlet-name>
+        <servlet-class>controller.ShopCartServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShopCart</servlet-name>
+        <url-pattern>/ShopCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/goodDetail.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>initial</servlet-name>
-        <url-pattern>/init</url-pattern>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/goodDetail</url-pattern>
     </servlet-mapping>
+
 </web-app>

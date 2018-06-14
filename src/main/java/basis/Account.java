@@ -1,9 +1,6 @@
 package basis;
 
 import enums.AccountStatus;
-import enums.UserType;
-import operations.Operations;
-import util.Bean;
 
 import java.util.List;
 
@@ -13,7 +10,7 @@ import java.util.List;
 
 
 
-public class Account extends Bean {
+public class Account{
 
     //用户ID，PK
     private String userId;
@@ -22,7 +19,7 @@ public class Account extends Bean {
     private AccountStatus status;
 
     //用户类型(普通用户、管理员)
-    private UserType permission;
+    private String type;
 
     //账户名
     private String userName;
@@ -45,31 +42,6 @@ public class Account extends Bean {
     private List<Service> serviceList;
     //充值列表
     private List<Recharge> rechargeList;
-
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
-
-    public ShopCart getShopCart() {
-        return shopCart;
-    }
-
-    public void setShopCart(ShopCart shopCart) {
-        this.shopCart = shopCart;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     //钱包
     private Wallet wallet;
     //购物车
@@ -107,35 +79,11 @@ public class Account extends Bean {
         return userName;
     }
 
-    public UserType getPermission() {
-        return permission;
+    public String getType() {
+        return type;
     }
 
-    public void setPermission(UserType permission) {
-        this.permission = permission;
+    public void setType(String type) {
+        this.type = type;
     }
-
-    public void setStatus(AccountStatus status) {
-        this.status = status;
-    }
-
-    public AccountStatus getStatus() {
-        return status;
-    }
-
-    //构造方法
-    public Account(){}
-
-    //构造之后要初始化，将其他信息也找到
-    public Account init(){
-        this.setType("Account");
-        this.orderList= Operations.BaseOperations.getOrderListByUserId(userId);
-        this.addressList=Operations.BaseOperations.getAddressListByUserId(userId);
-        this.serviceList=Operations.BaseOperations.getServiceListByUserId(userId);
-        this.rechargeList=Operations.BaseOperations.getRechargeListByUserId(userId);
-        this.wallet=Operations.BaseOperations.getWalletByUserId(userId);
-        this.shopCart=Operations.BaseOperations.getShopCartByUserId(userId);
-        return this;
-    }
-
 }

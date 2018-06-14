@@ -1,11 +1,10 @@
 package test;
-import basis.Category;
+import java.io.InputStream;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import java.io.InputStream;
-
+import basis.Category;
 
 public class Test {
 

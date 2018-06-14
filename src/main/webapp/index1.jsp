@@ -165,25 +165,25 @@
     <div id="showgoods">
         <ul>
             <li><a href="good.html" target="_blank"><img src="img/1.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/2.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/2.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/3.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/4.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/4.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/5.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/1.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/1.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/2.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/3.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/3.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/4.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/5.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/5.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/1.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/2.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/2.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/3.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/4.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/4.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/5.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/1.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/1.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/2.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/3.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/3.png"></a></li>
             <li><a href="good.html" target="_blank"><img src="img/4.png"></a></li>
-            <li><a href="goodDetail.html" target="_blank"><img src="img/5.png"></a></li>
+            <li><a href="goodDetail.jsp" target="_blank"><img src="img/5.png"></a></li>
         </ul>
     </div>
 </div>

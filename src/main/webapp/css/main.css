@@ -952,3 +952,9 @@ h1 {
     display: inline-block;
     line-height: 16px;
 }
+
+.receive{
+    border-style: solid;
+    border: 2px;
+    border-color: #e9e9e9;
+}

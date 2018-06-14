@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="operations.BookDAO">
+
+    <resultMap id="BookResultMap" type="basis.Book">
+        <result property="bookId" column="id"/>
+        <result property="name" column="title"/>
+        <result property="price" column="price"/>
+        <result property="date" column="publishDate"/>
+        <result property="quantity" column="inventory"/>
+        <result property="categoryId" column="category"/>
+        <result property="writer" column="writer"/>
+    </resultMap>
+
+    <select id="getPrice" resultType="double">
+        SELECT price FROM books
+        <where>
+            id = '${bookID}'
+        </where>
+    </select>
+
+    <select id="getWriter" resultType="string">
+        SELECT writer FROM books
+        <where>
+            id = '${bookID}'
+        </where>
+    </select>
+
+    <select id="getBooks" resultMap="BookResultMap">
+        SELECT * FROM books
+    </select>
+
+    <select id="getBook" resultMap="BookResultMap">
+        SELECT * FROM books
+        <where>
+            id = '${bookID}'
+        </where>
+    </select>
+
+    <select id="getTitle" resultType="string">
+        SELECT title FROM books
+        <where>
+            id = '${bookID}'
+        </where>
+    </select>
+
+</mapper>

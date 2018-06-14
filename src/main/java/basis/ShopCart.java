@@ -1,8 +1,5 @@
 package basis;
 
-import util.Bean;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -10,79 +7,96 @@ import java.util.List;
  */
 
 
-public class ShopCart extends Bean{
+public class ShopCart {
+
 
     //购物车编号
-    private String cartId;
+    private String bookID;
+
+    //购物车编号
+    private String bookName;
+
+    //购物车编号
+    private String bookWriter;
 
     //用户编号
-    private String userId;
+    private String userID;
 
-    //总价
-    private BigDecimal totalPrice;
+    //商品danjia
+    private double pricePerCommodity;
 
     //商品数
     private int totalItem;
 
+    //购物车内所有商品
+    private List<BookItem> bookItemList;
 
-    public List<BookItem> getBookItemList() {
-        return bookItemList;
-    }
-
-    public void setBookItemList(List<BookItem> bookItemList) {
-        this.bookItemList = bookItemList;
-    }
-
-    public String getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
+    public String getUserID() {
+        return userID;
     }
 
     public int getTotalItem() {
         return totalItem;
     }
 
+    public List<BookItem> getBookItemList() {
+        return bookItemList;
+    }
+
+    public String getBookID() {
+        return bookID;
+    }
+
+    public void setUserID(String userId) {
+        this.userID = userId;
+    }
+
+    public void setBookItemList(List<BookItem> bookItemList) {
+        this.bookItemList = bookItemList;
+    }
+
+    public void setBookID(String bookID) {
+        this.bookID = bookID;
+    }
+
     public void setTotalItem(int totalItem) {
         this.totalItem = totalItem;
     }
 
-    //购物车内所有商品
-    private List<BookItem> bookItemList;
-
-    //添加购物车项
-    public void addBookItem(BookItem bookItem){
-        this.bookItemList.add(bookItem);
-    }
-    //移除购物车项
-    public void removeBookItem(int index){
-        this.bookItemList.remove(index);
+    public double getPricePerCommodity() {
+        return pricePerCommodity;
     }
 
-    //构造方法
-    public ShopCart(){}
+    public void setPricePerCommodity(double pricePerCommodity) {
+        this.pricePerCommodity = pricePerCommodity;
+    }
 
-    @Override
-    public ShopCart init() {
-        this.setType("ShopCart");
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getBookWriter() {
+        return bookWriter;
+    }
+
+    public void setBookWriter(String bookWriter) {
+        this.bookWriter = bookWriter;
+    }
+
+    public ShopCart makeTempCart(String bookID,String bookName,String bookWriter,
+                          String userID,double pricePerCommodity,int totalItem){
+        this.setBookWriter(bookWriter);
+        this.setBookName(bookName);
+        this.setUserID(userID);
+        this.setBookID(bookID);
+        this.setPricePerCommodity(pricePerCommodity);
+        this.setBookWriter(bookWriter);
+        this.setTotalItem(totalItem);
         return this;
     }
 }
+

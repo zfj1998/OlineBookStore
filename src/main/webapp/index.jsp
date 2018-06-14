@@ -1,4 +1,22 @@
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="operations.BookDAO" %>
+<%@ page import="operations.BookOperations" %>
+<%@ page import="java.util.List" %>
+<%@ page import="basis.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    all = 0;
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) request.getServletContext().getAttribute("SqlSessionFactory");
+    List<Book> books = BookOperations.getBooks(sqlSessionFactory);
+    request.getSession().setAttribute("MainPageBooks",books);
+    bookAmount = books.size();
+%>
+<%!
+   int all = 0;
+   int bookAmount = 0;
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,8 +25,7 @@
 <link rel="Shortcut Icon" href="img/horse.ico">
 <!--引入外部样式表-->
 <link rel="stylesheet" href="css/resetcss.css"/>
-<link rel="stylesheet" href="css/main.css"/>
-<link rel="stylesheet" href="css/list.css"/>
+<link rel="stylesheet" href="css/main.css"/><link rel="stylesheet" href="css/list.css"/>
 
 </head>
 
@@ -16,14 +33,30 @@
 <div id="header">
 
     <ul id="leftlist" class="list">
-        <li><a href="login.html" class="link">请登录</a></li>
-        <li><a href="register.html" class="link">免费注册</a></li>
+        <c:choose>
+            <c:when test="${sessionScope.loginStatus=='false'}">
+                <li><a href="login.html" class="link">请登录</a></li>
+                <li><a href="register.html" class="link">免费注册</a></li>
+            </c:when>
+            <c:when test="${sessionScope.loginStatus=='true'}">
+                <li><a href="#" class="link">欢迎！${sessionScope.user.userName},您的用户账号: ${sessionScope.user.userId}</a></li>
+                <li>
+                    <form id="logout" method="post" >
+                        <a onclick="document.getElementById('logout').method='post'; document.getElementById('logout').action='/loginAndRegister?status=2'; document.getElementById('logout').submit();" class="link">退出</a>
+                    </form>
+                </li>
+            </c:when>
+        </c:choose>
     </ul>
 
+
     <ul id="rightlist" class="list">
+        <%--<c:choose>--%>
+        <%--<c:when test="${sessionScope.loginStatus=='true'}">--%>
         <li class="haschild">
             <a href="#" class="link" title="myorders">我的订单
             </a>
+
             <ul class="showdetail">
                 <li><a href="#" class="item">全部订单</a></li>
                 <li><a href="#" class="item">待付款订单</a></li>
@@ -31,7 +64,11 @@
                 <li><a href="#" class="item">待评价订单</a></li>
             </ul>
         </li>
-        <li><a href="#" class="link">购物车</a></li>
+        <li>
+            <form id="shopcart" method="post" >
+                <a onclick="document.getElementById('shopcart').method='post'; document.getElementById('shopcart').action='/ShopCart?status=0'; document.getElementById('shopcart').submit();" class="link">购物车</a>
+            </form>
+        </li>
         <li class="haschild"><a href="#" class="link">收藏夹
         </a>
             <ul class="showdetail">
@@ -40,9 +77,11 @@
             </ul>
         </li>
         <li><a href="#" class="link">商品分类</a></li>
-        
+        <%--</c:when>--%>
+        <%--</c:choose>--%>
     </ul>
 </div>
+
 
 
 <div id="content">
@@ -129,182 +168,36 @@
     </div>
 
 <table style="border-collapse:separate; border-spacing:30px 40px;">
-  
-  <tr>
+    <tr>
+<c:forEach items="${sessionScope.MainPageBooks}" var="keyword" varStatus="id">
+
   <td>
-          <div class="pro clearfix">
-            <a class="fl" href="#">
+      <div class="pro clearfix">
+          <form id="goods-detail" method="post" >
+          <a class="fl" onclick="document.getElementById('goods-detail').method='post'; document.getElementById('goods-detail').action='/goodDetail?id=${keyword.bookId}'; document.getElementById('goods-detail').submit();">
               <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart02.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Python</p>
-                  <p>作者:</p>
-                  <p>Paul Barry 著</p>
-                  <p class="price">价格：￥79.00</p>
-                </dd>
+                  <dt class="fl"><img src="img/temp/${keyword.bookId}.jpg"></dt>
+                  <dd class="fl">
+                      <p>${keyword.name}</p>
+                      <p>作者:</p>
+                      <p>${keyword.writer}</p>
+                      <p class="price">价格：￥${keyword.price}</p>
+                  </dd>
               </dl>
-            </a>
-          </div>
+          </a>
+          </form>
+      </div>
   </td>
-
-
-<td>        
-  <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Java</p>
-                  <p>作者:</p>
-                  <p>[美] 塞若，[美] 贝茨 著</p>
-                  <p class="price">价格：￥54.30</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-        </td>
-
-
-<td>
-  
-          <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Servlets and JSP</p>
-                  <p>作者:</p>
-                  <p>美] 巴萨姆，[美] 西拉，[美] 贝茨 著</p>
-                  <p class="price">价格：￥88.50</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-</td>
-
-</tr>
-    
-
- <tr>
-  <td>
-          <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart02.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Python</p>
-                  <p>作者:</p>
-                  <p>Paul Barry 著</p>
-                  <p class="price">价格：￥79.00</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-  </td>
-
-
-<td>        
-  <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Java</p>
-                  <p>作者:</p>
-                  <p>[美] 塞若，[美] 贝茨 著</p>
-                  <p class="price">价格：￥54.30</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-        </td>
-
-
-<td>
-  
-          <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Servlets and JSP</p>
-                  <p>作者:</p>
-                  <p>美] 巴萨姆，[美] 西拉，[美] 贝茨 著</p>
-                  <p class="price">价格：￥88.50</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-</td>
-
-</tr>
-    
-     <tr>
-  <td>
-          <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart02.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Python</p>
-                  <p>作者:</p>
-                  <p>Paul Barry 著</p>
-                  <p class="price">价格：￥79.00</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-  </td>
-
-
-<td>        
-  <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Java</p>
-                  <p>作者:</p>
-                  <p>[美] 塞若，[美] 贝茨 著</p>
-                  <p class="price">价格：￥54.30</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-        </td>
-
-
-<td>
-  
-          <div class="pro clearfix">
-            <a class="fl" href="#">
-              <dl class="clearfix">
-                <dt class="fl"><img src="img/temp/cart03.jpg"></dt>
-                <dd class="fl">
-                  <p>Head First Servlets and JSP</p>
-                  <p>作者:</p>
-                  <p>美] 巴萨姆，[美] 西拉，[美] 贝茨 著</p>
-                  <p class="price">价格：￥88.50</p>
-                </dd>
-              </dl>
-            </a>
-          </div>
-
-</td>
-
-</tr>
-    
-
-
-
-
-
-</table>>
+<%
+    all++;
+    if(all>0&&all%3==0&&bookAmount-all>0)
+    {
+        out.print("</tr><tr>");
+    }
+%>
+</c:forEach>
+    </tr>
+</table>
  
 
 

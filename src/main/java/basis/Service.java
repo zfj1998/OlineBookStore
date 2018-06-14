@@ -1,13 +1,11 @@
 package basis;
 
-import util.Bean;
-
 /**
  * 售后类
  */
 
 
-public class Service extends Bean{
+public class Service {
 
     //售后编号，PK
     private String serviceId;
@@ -15,28 +13,14 @@ public class Service extends Bean{
     //用户编号，FK
     private String userId;
 
-    public String getServiceId() {
-        return serviceId;
-    }
+    //换货编号，FK
+    private String exchangeId;
 
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
-    }
+    //退款编号，FK
+    private String refundId;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    //构造方法
-    public Service(){}
-
-    @Override
-    public Service init() {
-        this.setType("Service");
-        return this;
-    }
+    //换货
+    private Exchange exchange;
+    //退款
+    private Refund refund;
 }
